@@ -1,4 +1,4 @@
-const sendError = (req, res, next, error) => {
+const sendError = (req: any, res: any, next: Function, error: any) => {
   return res.status(error.status || 500).json({
     error: {
       message: error.message || 'Oops! Something went wrong.',
