@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:pro": "node --exec ts-node ./build.js",
+    "start:dev": "nodemon --exec ts-node server.ts"
   },
   "author": "",
   "license": "ISC",
