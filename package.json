@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:pro": "node --exec ts-node ./build.js",
+    "start:pro": "node --exec ts-node ./build/server.js",
     "start:dev": "nodemon --exec ts-node server.ts"
   },
   "author": "",
