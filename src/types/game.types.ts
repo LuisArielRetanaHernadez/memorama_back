@@ -33,7 +33,7 @@ export interface ResponseJson {
   data: Object
 }
 
-export const reponseJson = (
+export const sendReponseJson = (
   res: Response,
   content: ResponseJson, status: StatusResponse): any => {
   return res.status(status).json(content)
