@@ -1,6 +1,34 @@
 import tryCatch from '../utils/tryCatch'
 import TemplateError from '../utils/templateError'
 
-export const createGame = tryCatch(async (_req: any, _res: any, _next: any) => {
+import { Request, Response, NextFunction } from 'express'
 
+// service
+import { addGame } from '../service/gameService'
+import { ResponseJson, StatusResponse } from '../types/game.types'
+
+export const createGame = tryCatch(async (req: Request, res: Response, next: NextFunction) => {
+  const {
+    title,
+    category,
+    playerLimit,
+    isOnline,
+    isPrivate,
+    lavel
+  } = req.body
+
+  const game = await addGame({
+    title,
+    category,
+    playerLimit,
+    isOnline,
+    isPrivate,
+    lavel
+  })
+
+  const responseJson: ResponseJson = {
+    status: 'success',
+    data: game
+  }
+  res.status(201).json(responseJson)
 })
