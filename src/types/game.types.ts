@@ -1,3 +1,5 @@
+import { Response } from 'express'
+
 export type PrivateGame = 'private' | 'public'
 export type OnlineGame = 'online' | 'offline'
 export type CategoryGame = 'numbers' | 'animals' | 'science'
@@ -29,4 +31,10 @@ export type StatusResponseMessage = 'OK' | 'Created' | 'Accepted' | 'No Content'
 export interface ResponseJson {
   status: StatusResponseMessage
   data: Object
+}
+
+export const reponseJson = (
+  res: Response,
+  content: ResponseJson, status: StatusResponse): any => {
+  return res.status(status).json(content)
 }
