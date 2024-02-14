@@ -6,3 +6,11 @@ export const addGame = async (newGame: NewGame): Promise<Game> => {
   await game.save()
   return game
 }
+
+export const getGameById = async (idGame: string): Promise<Game[]> => {
+  const game = await gameSchema.find({ _id: idGame })
+  if (game.length === 0) {
+    throw new Error('Game not found')
+  }
+  return game
+}
