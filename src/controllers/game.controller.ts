@@ -6,7 +6,7 @@ import { Request, Response, NextFunction } from 'express'
 import { addGame } from '../service/gameService'
 import { ResponseJson, StatusResponse, sendReponseJson } from '../types/game.types'
 
-export const createGame = tryCatch(async (req: Request, res: Response, next: NextFunction) => {
+export const createGame = tryCatch(async (req: Request, res: Response, next: NextFunction): Promise<any> => {
   const {
     title,
     category,
