@@ -12,3 +12,5 @@ export interface Game {
   players: string[]
   lavel: LavelGame
 }
+
+export type NewGame = Omit<Game, 'players'>
