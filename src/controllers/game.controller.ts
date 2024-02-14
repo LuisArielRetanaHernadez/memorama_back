@@ -30,5 +30,8 @@ export const createGame = tryCatch(async (req: Request, res: Response, next: Nex
     status: 'Created',
     data: game
   }
-  res.status(201).json(responseJson)
+
+  const statusReponse: StatusResponse = 201
+
+  res.status(statusReponse).json(responseJson)
 })
