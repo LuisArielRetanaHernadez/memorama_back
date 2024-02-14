@@ -24,8 +24,9 @@ export interface Card {
 }
 
 export type StatusResponse = 200 | 201 | 202 | 203 | 204 | 400 | 404
+export type StatusResponseMessage = 'OK' | 'Created' | 'Accepted' | 'No Content' | 'Bad Request' | 'Not Found'
 
 export interface ResponseJson {
-  status: String
+  status: StatusResponseMessage
   data: Object
 }
