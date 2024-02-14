@@ -1,11 +1,10 @@
 import tryCatch from '../utils/tryCatch'
-import TemplateError from '../utils/templateError'
 
 import { Request, Response, NextFunction } from 'express'
 
 // service
 import { addGame } from '../service/gameService'
-import { ResponseJson, StatusResponse } from '../types/game.types'
+import { ResponseJson, StatusResponse, sendReponseJson } from '../types/game.types'
 
 export const createGame = tryCatch(async (req: Request, res: Response, next: NextFunction) => {
   const {
@@ -26,12 +25,14 @@ export const createGame = tryCatch(async (req: Request, res: Response, next: Nex
     lavel
   })
 
-  const responseJson: ResponseJson = {
+  const responseData: ResponseJson = {
     status: 'Created',
     data: game
   }
 
-  const statusReponse: StatusResponse = 201
+  const statusResponse: StatusResponse = 201
 
-  res.status(statusReponse).json(responseJson)
+  const reponseSedn = sendReponseJson(res, responseData, statusResponse)
+
+  return reponseSedn
 })
