@@ -23,6 +23,11 @@
     "parserOptions": {
       "project": "./tsconfig.json"
     },
-    "extends": ["./node_modules/ts-standard/eslintrc.json"]
+    "extends": [
+      "./node_modules/ts-standard/eslintrc.json"
+    ]
+  },
+  "dependencies": {
+    "mongoose": "^8.1.2"
   }
 }
