@@ -22,3 +22,10 @@ export interface Card {
   leve: LavelGame
   status: GameStatus
 }
+
+export type StatusResponse = 200 | 201 | 202 | 203 | 204 | 400 | 404
+
+export interface ResponseJson {
+  status: String
+  data: Object
+}
