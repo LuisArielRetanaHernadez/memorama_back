@@ -1,5 +1,7 @@
 import { Response } from 'express'
 
+import { Types } from 'mongoose'
+
 export type PrivateGame = 'private' | 'public'
 export type OnlineGame = 'online' | 'offline'
 export type CategoryGame = 'numbers' | 'animals' | 'science'
@@ -13,6 +15,12 @@ export interface Game {
   isOnline: OnlineGame
   isPrivate: PrivateGame
   players: String[]
+  cards: [{
+    type: Types.ObjectId
+    ref: 'cards'
+    isMatch: Boolean
+    player: String
+  }]
   lavel: LavelGame
 }
 
