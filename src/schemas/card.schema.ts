@@ -6,6 +6,7 @@ const cardSchema = new Schema<Card>({
   content: String,
   pair: Number,
   lavel: String,
+  category: String,
   status: String
 })
 
