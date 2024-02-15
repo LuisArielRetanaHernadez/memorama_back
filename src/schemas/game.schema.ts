@@ -9,6 +9,12 @@ const gameSchema = new Schema<Game>({
   isOnline: Boolean,
   isPrivate: Boolean,
   players: [String],
+  cards: [{
+    type: Schema.Types.ObjectId,
+    ref: 'cards',
+    isMatch: Boolean,
+    player: String
+  }],
   lavel: String
 })
 
