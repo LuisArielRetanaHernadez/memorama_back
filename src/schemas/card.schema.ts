@@ -5,7 +5,7 @@ const { Schema } = mongoose
 const cardSchema = new Schema<Card>({
   content: String,
   pair: Number,
-  leve: String,
+  lavel: String,
   status: String
 })
 
