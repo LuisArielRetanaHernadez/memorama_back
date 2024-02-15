@@ -8,7 +8,11 @@ const gameSchema = new Schema<Game>({
   playerLimit: Number,
   isOnline: Boolean,
   isPrivate: Boolean,
-  players: [String],
+  players: [{
+    name: String,
+    position: Number,
+    socket: null
+  }],
   cards: [{
     type: Schema.Types.ObjectId,
     ref: 'cards',
