@@ -2,11 +2,11 @@ import { Response } from 'express'
 
 import { Types } from 'mongoose'
 
+import { LavelGame } from './types'
+
 export type PrivateGame = 'private' | 'public'
 export type OnlineGame = 'online' | 'offline'
 export type CategoryGame = 'numbers' | 'animals' | 'science'
-export type LavelGame = 'easy' | 'medium' | 'hard'
-export type GameStatus = 'live' | 'update' | 'deleted'
 
 export interface Game {
   title: String
@@ -25,13 +25,6 @@ export interface Game {
 }
 
 export type NewGame = Omit<Game, 'players'>
-
-export interface Card {
-  content: String
-  pair: Number
-  leve: LavelGame
-  status: GameStatus
-}
 
 export type StatusResponse = 200 | 201 | 202 | 203 | 204 | 400 | 404
 export type StatusResponseMessage = 'OK' | 'Created' | 'Accepted' | 'No Content' | 'Bad Request' | 'Not Found'
