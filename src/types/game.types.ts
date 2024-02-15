@@ -1,6 +1,6 @@
 import { Types } from 'mongoose'
 
-import { LavelGame } from './types'
+import { LavelGame, Player } from './types'
 
 export type PrivateGame = 'private' | 'public'
 export type OnlineGame = 'online' | 'offline'
@@ -12,7 +12,7 @@ export interface Game {
   category: CategoryGame
   isOnline: OnlineGame
   isPrivate: PrivateGame
-  players: String[]
+  players: [Player]
   cards: [{
     type: Types.ObjectId
     ref: 'cards'
