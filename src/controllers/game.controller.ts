@@ -4,7 +4,7 @@ import { Request, Response, NextFunction } from 'express'
 
 // service
 import { addGame } from '../service/gameService'
-import { ResponseJson, StatusResponse, sendReponseJson } from '../types/game.types'
+import { ResponseJson, StatusResponse, sendReponseJson } from '../types/types'
 
 export const createGame = tryCatch(async (req: Request, res: Response, _next: NextFunction): Promise<any> => {
   const {
