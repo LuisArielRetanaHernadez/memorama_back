@@ -3,8 +3,9 @@ import tryCatch from '../utils/tryCatch'
 import { Request, Response, NextFunction } from 'express'
 
 // service
-import { addGame } from '../service/gameService'
+import { addGame, getGameByIdService } from '../service/gameService'
 import { ResponseJson, StatusResponse, sendReponseJson } from '../types/types'
+import TemplateError from '../utils/templateError'
 
 export const createGame = tryCatch(async (req: Request, res: Response, _next: NextFunction): Promise<any> => {
   const {
@@ -37,6 +38,19 @@ export const createGame = tryCatch(async (req: Request, res: Response, _next: Ne
   return reponseSedn
 })
 
-export const getGameById = tryCatch(async (_req: Request, res: Response, _next: NextFunction): Promise<any> => {
-  return res.status(200).json({})
+export const getGameById = tryCatch(async (req: Request, res: Response, next: NextFunction): Promise<any> => {
+  const gameFind = await getGameByIdService(req.params.id)
+  let statusResponse: StatusResponse = 200
+
+  if (gameFind.length === 0) {
+    statusResponse = 404
+    return next(new TemplateError('not found Game', statusResponse))
+  }
+
+  const responseData: ResponseJson = {
+    status: 'OK',
+    data: gameFind
+  }
+
+  return sendReponseJson(res, responseData, statusResponse)
 })
