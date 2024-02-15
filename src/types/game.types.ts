@@ -22,4 +22,4 @@ export interface Game {
   lavel: LavelGame
 }
 
-export type NewGame = Omit<Game, 'players'>
+export type NewGame = Omit<Game, 'players' | 'cards'>
