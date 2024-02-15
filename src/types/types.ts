@@ -1,3 +1,4 @@
+import { SocketType } from 'dgram'
 import { Response } from 'express'
 
 export type LavelGame = 'easy' | 'medium' | 'hard'
@@ -16,4 +17,10 @@ export const sendReponseJson = (
   res: Response,
   content: ResponseJson, status: StatusResponse): any => {
   return res.status(status).json(content)
+}
+
+export interface Player {
+  name: string
+  position: number
+  socket?: SocketType
 }
