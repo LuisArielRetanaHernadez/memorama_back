@@ -1,8 +1,8 @@
-const sendError = (req: any, res: any, next: Function, error: any) => {
-  return res.status(error.status || 500).json({
+const sendError = (_req: any, res: any, _next: Function, error: any): any => {
+  return res.status(error.status).json({
     error: {
-      message: error.message || 'Oops! Something went wrong.',
-      stack: error.stack,
+      message: error.message,
+      stack: error.stack
     }
   })
 }
