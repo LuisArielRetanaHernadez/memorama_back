@@ -37,6 +37,6 @@ export const createGame = tryCatch(async (req: Request, res: Response, _next: Ne
   return reponseSedn
 })
 
-export const getGameById = tryCatch(async (req: Request, res: Response, _next: NextFunction): Promise<any> => {
+export const getGameById = tryCatch(async (_req: Request, res: Response, _next: NextFunction): Promise<any> => {
   return res.status(200).json({})
 })
