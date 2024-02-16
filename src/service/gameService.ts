@@ -46,7 +46,7 @@ export const enterTheGameService = async (idGame: string, player: Player): Promi
   return game
 }
 
-export const searchGameService = async (game: string): Promise<Game[] | undefined> => {
+export const searchGameService = async (game: String): Promise<Game[] | undefined> => {
   // buscar game por id o nombre
   const games = await gameSchema.find({ $or: [{ _id: game }, { title: game }], isOnline: true })
 
