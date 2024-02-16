@@ -7,6 +7,6 @@ const router = express.Router()
 
 router.post('/', createGame)
 router.get('/:id', getGameById)
-router.get('?search', searchGame)
+router.get('/game?search', searchGame)
 
 export default router
