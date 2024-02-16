@@ -11,7 +11,7 @@ const gameSchema = new Schema<Game>({
   players: [{
     name: String,
     position: Number,
-    socket: null
+    socket: String
   }],
   cards: [{
     type: Schema.Types.ObjectId,
