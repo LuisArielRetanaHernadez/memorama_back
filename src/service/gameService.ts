@@ -3,7 +3,7 @@ import gameSchema from '../schemas/game.schema'
 import cardSchema from '../schemas/card.schema'
 import { Player } from '../types/types'
 
-export const getGames = async (limit: number = 6, skip: number = 1): Promise<Game[] | []> => {
+export const getGamesService = async (limit: number = 6, skip: number = 1): Promise<Game[] | []> => {
   const games = await gameSchema.find({ isOnline: true }).skip(skip).limit(limit)
 
   if (games.length <= 0) {

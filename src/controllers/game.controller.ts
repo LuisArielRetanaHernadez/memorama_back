@@ -3,9 +3,30 @@ import tryCatch from '../utils/tryCatch'
 import { Request, Response, NextFunction } from 'express'
 
 // service
-import { addGame, enterTheGameService, getGameByIdService, searchGameService } from '../service/gameService'
+import { addGame, enterTheGameService, getGameByIdService, getGamesService, searchGameService } from '../service/gameService'
 import { ResponseJson, StatusResponse, sendReponseJson } from '../types/types'
 import TemplateError from '../utils/templateError'
+
+export const getGame = tryCatch(async (req: Request, res: Response, next: NextFunction): Promise<any> => {
+  const { limit, page } = req.query
+
+  if (limit === undefined || page === undefined) {
+    return next(new TemplateError('limit or page is undefined', 400))
+  }
+
+  const games = await getGamesService(+limit, +page)
+
+  if (games.length <= 0) {
+    return next(new TemplateError('not found Games', 404))
+  }
+
+  const responseData: ResponseJson = {
+    status: 'OK',
+    data: games
+  }
+
+  return sendReponseJson(res, responseData, 200)
+})
 
 export const createGame = tryCatch(async (req: Request, res: Response, _next: NextFunction): Promise<any> => {
   const {
