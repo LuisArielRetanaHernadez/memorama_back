@@ -3,7 +3,7 @@ import tryCatch from '../utils/tryCatch'
 import { Request, Response, NextFunction } from 'express'
 
 // service
-import { addGame, getGameByIdService } from '../service/gameService'
+import { addGame, enterTheGameService, getGameByIdService } from '../service/gameService'
 import { ResponseJson, StatusResponse, sendReponseJson } from '../types/types'
 import TemplateError from '../utils/templateError'
 
@@ -53,4 +53,22 @@ export const getGameById = tryCatch(async (req: Request, res: Response, next: Ne
   }
 
   return sendReponseJson(res, responseData, statusResponse)
+})
+
+export const enterTheGame = tryCatch(async (req: Request, res: Response, next: NextFunction): Promise<any> => {
+  const { player } = req.body
+  const { id } = req.params
+
+  const matchGame = await enterTheGameService(id, player)
+
+  if (!matchGame) {
+    return next(new TemplateError('not found Game', 404))
+  }
+
+  const responseData: ResponseJson = {
+    status: 'OK',
+    data: matchGame
+  }
+
+  return sendReponseJson(res, responseData, 200)
 })
