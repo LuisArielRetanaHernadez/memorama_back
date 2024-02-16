@@ -10,4 +10,4 @@ const cardSchema = new Schema<Card>({
   status: String
 })
 
-export default mongoose.model('Game', cardSchema)
+export default mongoose.model('Card', cardSchema)
