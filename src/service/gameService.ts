@@ -45,3 +45,20 @@ export const enterTheGameService = async (idGame: string, player: Player): Promi
 
   return game
 }
+
+export const searchGameService = async (game: string): Promise<Game[] | undefined> => {
+  // buscar game por id o nombre
+  const games = await gameSchema.find({ $or: [{ _id: game }, { title: game }], isOnline: true })
+
+  if (games.length === 0) {
+    return undefined
+  }
+
+  const gamesAvailable = games?.filter(game => game.players.length < 4)
+
+  if (gamesAvailable.length === 0) {
+    return undefined
+  }
+
+  return games
+}
