@@ -24,3 +24,12 @@ export interface Game {
 
 export type NewGame = Omit<Game, 'players' | 'cards'>
 export type GetGames = Omit<Game, 'players' | 'cards' | 'isOnline'>
+
+export interface GamesPagination {
+  games: GetGames[]
+  page: number
+  limit: number
+  total: number
+  next?: number
+  prev?: number
+}
