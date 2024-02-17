@@ -10,8 +10,8 @@ export interface Game {
   title: String
   playerLimit: String
   category: CategoryGame
-  isOnline: OnlineGame
-  isPrivate: PrivateGame
+  isOnline: Boolean
+  isPrivate: Boolean
   players: [Player]
   cards: [{
     type: Types.ObjectId
