@@ -9,6 +9,7 @@ export type CategoryGame = 'numbers' | 'animals' | 'science'
 export interface Game {
   title: String
   playerLimit: String
+  limitCards: number
   category: CategoryGame
   isOnline: Boolean
   isPrivate: Boolean
