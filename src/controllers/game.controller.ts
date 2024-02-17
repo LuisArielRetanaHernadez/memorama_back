@@ -22,7 +22,9 @@ export const getGame = tryCatch(async (req: Request, res: Response, next: NextFu
 
   const responseData: ResponseJson = {
     status: 'OK',
-    data: games
+    data: games,
+    page: +page,
+    limit: +limit
   }
 
   return sendReponseJson(res, responseData, 200)
