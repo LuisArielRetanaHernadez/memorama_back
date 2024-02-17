@@ -6,6 +6,7 @@ import { Request, Response, NextFunction } from 'express'
 import { addGame, enterTheGameService, getGameByIdService, getGamesService, searchGameService } from '../service/gameService'
 import { ResponseJson, StatusResponse, sendReponseJson } from '../types/types'
 import TemplateError from '../utils/templateError'
+import { Game } from '../types/game.types'
 
 export const getGame = tryCatch(async (req: Request, res: Response, next: NextFunction): Promise<any> => {
   const { limit, page } = req.query
@@ -26,7 +27,7 @@ export const getGame = tryCatch(async (req: Request, res: Response, next: NextFu
   return sendReponseJson(res, responseData, 200)
 })
 
-export const createGame = tryCatch(async (req: Request, res: Response, _next: NextFunction): Promise<any> => {
+export const createGame = tryCatch(async (req: Request, res: Response, _next: NextFunction): Promise<Game | TemplateError> => {
   const {
     title,
     category,
