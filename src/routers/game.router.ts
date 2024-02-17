@@ -6,7 +6,7 @@ import { createGame, getGame, getGameById, searchGame } from '../controllers/gam
 const router = express.Router()
 
 router.post('/', createGame)
-router.get('/?limit=&page=', getGame)
+router.get('?limit=&page=', getGame)
 router.get('/:id', getGameById)
 router.get('/game?search', searchGame)
 
