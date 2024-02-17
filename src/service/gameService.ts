@@ -3,11 +3,13 @@ import gameSchema from '../schemas/game.schema'
 import cardSchema from '../schemas/card.schema'
 import { Player } from '../types/types'
 
-export const getGamesService = async (limit: number = 6, skip: number = 1): Promise<GamesPagination | Error> => {
+import TemplateError from '../utils/templateError'
+
+export const getGamesService = async (limit: number = 6, skip: number = 1): Promise<GamesPagination | TemplateError> => {
   const games = await gameSchema.find({ isOnline: true }).skip(skip).limit(limit)
 
   if (games.length <= 0) {
-    throw new Error('not found Games')
+    throw new TemplateError('not found Games', 400)
   }
 
   const gamesPagination: GamesPagination = {
