@@ -15,7 +15,6 @@ export interface Game {
   players: [Player]
   cards: [{
     type: Types.ObjectId
-    ref: 'cards'
     isMatch: Boolean
     player: String
   }]
