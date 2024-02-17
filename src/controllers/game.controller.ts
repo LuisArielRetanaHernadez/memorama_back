@@ -31,6 +31,7 @@ export const createGame = tryCatch(async (req: Request, res: Response, _next: Ne
     title,
     category,
     playerLimit,
+    limitCards,
     isOnline,
     isPrivate,
     lavel
@@ -40,6 +41,7 @@ export const createGame = tryCatch(async (req: Request, res: Response, _next: Ne
     title,
     category,
     playerLimit,
+    limitCards,
     isOnline,
     isPrivate,
     lavel
