@@ -23,3 +23,4 @@ export interface Game {
 }
 
 export type NewGame = Omit<Game, 'players' | 'cards'>
+export type GetGames = Omit<Game, 'players' | 'cards' | 'isOnline'>
