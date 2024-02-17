@@ -16,10 +16,6 @@ export const getGame = tryCatch(async (req: Request, res: Response, next: NextFu
 
   const games = await getGamesService(+limit, +page)
 
-  if (games.length <= 0) {
-    return next(new TemplateError('not found Games', 404))
-  }
-
   const responseData: ResponseJson = {
     status: 'OK',
     data: games,
