@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 
 const tryCatch = (fn: any) => (req: Request, res: Response, next: NextFunction) => {
-  return next(fn(req, res, next))
+  return fn(req, res, next).catch(next)
 }
 
 export default tryCatch
