@@ -11,6 +11,10 @@ export type StatusResponseMessage = 'OK' | 'Created' | 'Accepted' | 'No Content'
 export interface ResponseJson {
   status: StatusResponseMessage
   data: Object
+  page?: number
+  limit?: number
+  pages?: number
+  next?: number | null
 }
 
 export const sendReponseJson = (
