@@ -16,8 +16,14 @@ const gameSchema = new Schema<Game>({
   cards: [{
     type: Schema.Types.ObjectId,
     ref: 'cards',
-    isMatch: Boolean,
-    player: String
+    isMatch: {
+      type: Boolean,
+      default: false
+    },
+    player: {
+      type: String,
+      default: ''
+    }
   }],
   lavel: String
 })
