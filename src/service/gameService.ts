@@ -27,6 +27,10 @@ export const addGame = async (newGame: NewGame): Promise<Game> => {
 
   const getCards = await cardSchema.find({ lavel, category }).limit(16)
 
+  if (getCards.length !== 16 || getCards.length <= 0) {
+    throw new Error('Cards not found')
+  }
+
   const game = await gameSchema.create({
     ...newGame,
     cards: getCards
