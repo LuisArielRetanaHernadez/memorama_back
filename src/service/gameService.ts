@@ -25,10 +25,10 @@ export const getGamesService = async (limit: number = 6, skip: number = 1): Prom
 export const addGame = async (newGame: NewGame): Promise<Game> => {
   const { lavel, category } = newGame
 
-  const getCards = await cardSchema.find({ lavel, category }).limit(16)
+  const getCards = await cardSchema.find({ lavel, category }).limit(4)
 
-  if (getCards.length !== 16 || getCards.length <= 0) {
-    throw new Error('Cards not found')
+  if (getCards.length !== 4 || getCards.length <= 0) {
+    throw new TemplateError('Cards not found', 400)
   }
 
   const game = await gameSchema.create({
