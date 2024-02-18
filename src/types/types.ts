@@ -27,4 +27,5 @@ export interface Player {
   name: string
   position: number
   socket?: SocketType
+  password?: string
 }
