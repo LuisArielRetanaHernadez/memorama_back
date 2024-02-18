@@ -13,6 +13,7 @@ export interface Game {
   category: CategoryGame
   isOnline: Boolean
   isPrivate: Boolean
+  password?: String
   players: [Player]
   cards: [{
     type: Types.ObjectId
