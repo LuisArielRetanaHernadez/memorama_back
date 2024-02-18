@@ -1,7 +1,7 @@
 import { checkSchema } from 'express-validator'
 import { LavelGame } from '../types/types'
 
-export const schema = checkSchema({
+export const createGameSchema = checkSchema({
   title: {
     isEmpty: false,
     errorMessage: 'Title is required',
