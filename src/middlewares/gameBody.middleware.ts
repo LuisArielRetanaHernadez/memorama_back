@@ -46,6 +46,24 @@ export const createGameSchema = checkSchema({
       }
     }
   },
+  password: {
+    optional: true,
+    custom: {
+      options: (value, { req }) => {
+        if (value === '' && req.isPrivate === true) {
+          throw new Error('Password is required')
+        }
+        return true
+      }
+    },
+    trim: true,
+    isLength: {
+      options: {
+        min: 8,
+        max: 16
+      }
+    }
+  },
   lavel: {
     isString: true,
     customSanitizer: {
