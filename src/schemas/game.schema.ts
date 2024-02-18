@@ -9,13 +9,17 @@ const gameSchema = new Schema<Game>({
   isOnline: Boolean,
   isPrivate: Boolean,
   players: [{
-    name: String,
-    position: Number,
-    socket: String
+    name: {
+      type: String
+    },
+    position: {
+      type: Number
+    },
+    socket: {
+      type: String
+    }
   }],
   cards: [{
-    type: Schema.Types.ObjectId,
-    ref: 'cards',
     isMatch: {
       type: Boolean,
       default: false
