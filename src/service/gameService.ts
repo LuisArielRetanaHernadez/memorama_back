@@ -63,6 +63,12 @@ export const enterTheGameService = async (idGame: string, player: Player): Promi
     throw new Error('Player already exists')
   }
 
+  if (game.isPrivate === true) {
+    if (game.password !== player.password) {
+      throw new Error('Incorrect password')
+    }
+  }
+
   // actualizar el campo player para agregar al nuevo player
   await game.updateOne({ $push: { players: player } })
 
