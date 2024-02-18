@@ -8,6 +8,7 @@ const gameSchema = new Schema<Game>({
   playerLimit: Number,
   isOnline: Boolean,
   isPrivate: Boolean,
+  password: String,
   players: [{
     name: {
       type: String
