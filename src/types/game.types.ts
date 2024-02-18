@@ -13,6 +13,7 @@ export interface Game {
   category: CategoryGame
   isOnline: Boolean
   isPrivate: Boolean
+  password?: String
   players: [Player]
   cards: [{
     type: Types.ObjectId
@@ -24,7 +25,7 @@ export interface Game {
   lavel: LavelGame
 }
 
-export type NewGame = Omit<Game, 'players' | 'cards'>
+export type NewGame = Omit<Game, 'players' | 'cards' | 'matchsCards'>
 export type GetGames = Omit<Game, 'players' | 'cards' | 'isOnline'>
 
 export interface GamesPagination {
