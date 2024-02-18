@@ -16,8 +16,10 @@ export interface Game {
   players: [Player]
   cards: [{
     type: Types.ObjectId
-    isMatch: Boolean
-    player: String
+  }]
+  matchsCards: [{
+    pair: number
+    player: string
   }]
   lavel: LavelGame
 }
