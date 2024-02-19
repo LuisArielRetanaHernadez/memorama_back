@@ -17,14 +17,14 @@ export interface Game {
   isOnline: Boolean
   isPrivate: Boolean
   password?: String
-  players: [Player]
+  players: Player[]
   cards: [{ type: Types.ObjectId }]
   matchsCards: [{ pair: number, player: string }]
   lavel: GameLavel
   status: StatusSource
 }
 
-export type NewGame = Omit<Game, 'players' | 'cards' | 'matchsCards'>
+export type NewGame = Omit<Game, 'cards' | 'matchsCards'>
 export type GetGames = Omit<Game, 'players' | 'cards' | 'isOnline'>
 
 export interface GamesPagination {
