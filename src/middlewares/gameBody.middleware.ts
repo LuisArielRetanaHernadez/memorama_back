@@ -1,7 +1,6 @@
 import { checkSchema } from 'express-validator'
 import { GameLavel } from '../types/game.types'
 import { Player } from '../types/types'
-import { Socket } from 'net'
 
 export const createGameSchema = checkSchema({
   title: {
