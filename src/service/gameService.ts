@@ -11,12 +11,27 @@ export const getGamesService = async (limit: number = 6, skip: number = 1): Prom
   if (games.length <= 0) {
     throw new TemplateError('not found Games', 400)
   }
+  // obtener el total de paginas diviendo con el limit
+  const totalPages = Math.ceil(await gameSchema.countDocuments() / limit)
+
+  let nextPage = totalPages
+  let prevPage = 1
+
+  if (skip < totalPages) {
+    nextPage = skip + 1
+  }
+
+  if (skip > 1) {
+    prevPage = skip
+  }
 
   const gamesPagination: GamesPagination = {
     games,
-    total: Math.ceil(games.length / limit),
+    totalPages,
+    limitSource: limit,
     page: +skip,
-    limit: +limit
+    nextPage,
+    prevPage
   }
 
   return gamesPagination
