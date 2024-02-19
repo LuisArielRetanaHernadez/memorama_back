@@ -1,4 +1,5 @@
-import { StatusSource, GameLavel, GameCategory } from './types'
+import { GameLavel, GameCategory } from './game.types'
+import { StatusSource } from './types'
 
 export interface Card {
   content: String

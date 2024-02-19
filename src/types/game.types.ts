@@ -4,7 +4,6 @@ import { Player } from './types'
 
 export type PrivateGame = 'private' | 'public'
 export type GameLavel = 'easy' | 'medium' | 'hard'
-export type StatusSource = 'live' | 'update' | 'deleted'
 export type GameCategory = 'numbers' | 'animals' | 'programmation' | 'countries'
 
 export type OnlineGame = 'online' | 'offline'
