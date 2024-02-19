@@ -8,7 +8,7 @@ import { Server } from 'socket.io'
 const httpServer = createServer(app)
 const io = new Server(httpServer, {})
 
-io.on('connection', socket => {
+io.on('connection', _socket => {
   console.log('a user connected')
 })
 
