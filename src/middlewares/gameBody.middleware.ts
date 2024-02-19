@@ -84,6 +84,18 @@ export const createGameSchema = checkSchema({
       }
     }
   },
+  'players.*.password': {
+    optional: true,
+    custom: {
+      options: (value, { req }) => {
+        if (value === '' && req.body.isPrivate === true) {
+          throw new Error('Password is required')
+        }
+        return true
+      }
+    },
+    trim: true
+  },
   lavel: {
     isString: true,
     customSanitizer: {
