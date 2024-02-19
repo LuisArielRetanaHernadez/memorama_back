@@ -28,25 +28,7 @@ export const getGame = tryCatch(async (req: Request, res: Response, next: NextFu
 })
 
 export const createGame = tryCatch(async (req: Request, res: Response, _next: NextFunction): Promise<Game | TemplateError> => {
-  const {
-    title,
-    category,
-    playerLimit,
-    limitCards,
-    isOnline,
-    isPrivate,
-    lavel
-  } = req.body
-
-  const game = await addGame({
-    title,
-    category,
-    playerLimit,
-    limitCards,
-    isOnline,
-    isPrivate,
-    lavel
-  })
+  const game = await addGame({ ...req.body })
 
   const responseData: ResponseJson = {
     status: 'Created',
