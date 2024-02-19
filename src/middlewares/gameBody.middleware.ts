@@ -1,5 +1,7 @@
 import { checkSchema } from 'express-validator'
 import { GameLavel } from '../types/game.types'
+import { Player } from '../types/types'
+import { Socket } from 'net'
 
 export const createGameSchema = checkSchema({
   title: {
@@ -61,6 +63,24 @@ export const createGameSchema = checkSchema({
       options: {
         min: 8,
         max: 16
+      }
+    }
+  },
+  players: {
+    optional: true,
+    custom: {
+      options: (value: Player[], { req }) => {
+        if (value.length <= 0) {
+          throw new Error('Players is required')
+        }
+        if (value.length > req.playerLimit) {
+          throw new Error('Players limit exceeded')
+        }
+        const players = value.some(player => player.name === '' || typeof player.name === 'string')
+        if (players) {
+          throw new Error('Players name is required')
+        }
+        return true
       }
     }
   },
