@@ -1,5 +1,5 @@
 import { checkSchema } from 'express-validator'
-import { LavelGame } from '../types/types'
+import { GameLavel } from '../types/game.types'
 
 export const createGameSchema = checkSchema({
   title: {
@@ -67,7 +67,7 @@ export const createGameSchema = checkSchema({
   lavel: {
     isString: true,
     customSanitizer: {
-      options: (value: LavelGame) => {
+      options: (value: GameLavel) => {
         if (!['easy', 'medium', 'hard'].includes(value)) {
           throw new Error('Level must be easy, medium or hard')
         }
