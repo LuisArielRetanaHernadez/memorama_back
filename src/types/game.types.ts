@@ -1,6 +1,6 @@
 import { Types } from 'mongoose'
 
-import { Player } from './types'
+import { Player, StatusSource } from './types'
 
 export type PrivateGame = 'private' | 'public'
 export type GameLavel = 'easy' | 'medium' | 'hard'
@@ -26,6 +26,7 @@ export interface Game {
     player: string
   }]
   lavel: GameLavel
+  status: StatusSource
 }
 
 export type NewGame = Omit<Game, 'players' | 'cards' | 'matchsCards'>
