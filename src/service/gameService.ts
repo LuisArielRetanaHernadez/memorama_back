@@ -15,7 +15,7 @@ export const getGamesService = async (limit: number = 6, skip: number = 1): Prom
     nextPage = skip + 1
   }
 
-  if (skip > 1) {
+  if (skip > 1 && skip < totalPages) {
     prevPage = skip
   }
 
@@ -29,7 +29,7 @@ export const getGamesService = async (limit: number = 6, skip: number = 1): Prom
     games,
     totalPages,
     limitSource: limit,
-    page: +skip,
+    page: skip,
     nextPage,
     prevPage
   }
