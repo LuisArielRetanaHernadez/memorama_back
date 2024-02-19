@@ -1,4 +1,3 @@
-import { SocketType } from 'dgram'
 import { Response } from 'express'
 
 export type StatusSource = 'live' | 'update' | 'deleted'
@@ -23,6 +22,6 @@ export const sendReponseJson = (
 export interface Player {
   name: string
   position: number
-  socket?: SocketType
+  socket?: String
   password?: string
 }
