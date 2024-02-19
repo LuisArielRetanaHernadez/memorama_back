@@ -6,12 +6,6 @@ import { Player } from '../types/types'
 import TemplateError from '../utils/templateError'
 
 export const getGamesService = async (limit: number = 6, skip: number = 1): Promise<GamesPagination | TemplateError> => {
-  const games = await gameSchema.find({ isOnline: true }).skip(skip).limit(limit)
-
-  if (games.length <= 0) {
-    throw new TemplateError('not found Games', 400)
-  }
-  // obtener el total de paginas diviendo con el limit
   const totalPages = Math.ceil(await gameSchema.countDocuments() / limit)
 
   let nextPage = totalPages
@@ -23,6 +17,12 @@ export const getGamesService = async (limit: number = 6, skip: number = 1): Prom
 
   if (skip > 1) {
     prevPage = skip
+  }
+
+  const games = await gameSchema.find({ isOnline: true }).skip(skip).limit(limit)
+
+  if (games.length <= 0) {
+    throw new TemplateError('not found Games', 400)
   }
 
   const gamesPagination: GamesPagination = {
