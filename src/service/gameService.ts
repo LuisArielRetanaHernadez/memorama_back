@@ -41,7 +41,7 @@ export const addGame = async (newGame: NewGame): Promise<Game> => {
 }
 
 export const getGameByIdService = async (idGame: string): Promise<Game[]> => {
-  const game = await gameSchema.find({ _id: idGame })
+  const game = await gameSchema.find({ _id: idGame, isOnline: true }, 'cards')
   if (game.length === 0) {
     throw new Error('Game not found')
   }
