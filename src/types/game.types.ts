@@ -30,8 +30,8 @@ export type GetGames = Omit<Game, 'players' | 'cards' | 'isOnline'>
 export interface GamesPagination {
   games: GetGames[]
   page: number
-  limit: number
-  total: number
-  next?: number
-  prev?: number
+  limitSource: number
+  totalPages: number
+  nextPage?: number
+  prevPage?: number
 }
