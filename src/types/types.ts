@@ -1,9 +1,9 @@
 import { SocketType } from 'dgram'
 import { Response } from 'express'
 
-export type LavelGame = 'easy' | 'medium' | 'hard'
+export type GameLavel = 'easy' | 'medium' | 'hard'
 export type StatusSource = 'live' | 'update' | 'deleted'
-export type CategoryGame = 'numbers' | 'animals' | 'programmation' | 'countries'
+export type GameCategory = 'numbers' | 'animals' | 'programmation' | 'countries'
 
 export type StatusResponse = 200 | 201 | 202 | 203 | 204 | 400 | 404
 export type StatusResponseMessage = 'OK' | 'Created' | 'Accepted' | 'No Content' | 'Bad Request' | 'Not Found'
