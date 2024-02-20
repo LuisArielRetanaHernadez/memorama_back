@@ -10,7 +10,9 @@ export const gameSpace = (io: any): any => {
 
   game.on('connection', (socket: Socket) => {
     console.log('a user connected to game space ', socket.id)
-    socket.use(apllyMiddleware)
+    socket.use((event, next) => {
+      apllyMiddleware(socket, event, next)
+    })
 
     socket.on('disconnect', () => {
       console.log('user disconnected from game space')
