@@ -2,7 +2,7 @@ import { Socket } from 'socket.io'
 import { NewGame } from '../../../types/game.types'
 
 export const gameMiddleware = {
-  'game create': (_socket: Socket, data: NewGame, _next: any) => {
+  'game create': (_socket: Socket, data: NewGame, next: any) => {
     const titleValid = data.title
     if (typeof titleValid !== 'string') {
       throw new Error('Title is not a string')
@@ -56,5 +56,7 @@ export const gameMiddleware = {
     if (playersValid.length > playerLimitValid) {
       throw new Error('Player limit is too high')
     }
+
+    next()
   }
 }
