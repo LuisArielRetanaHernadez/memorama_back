@@ -28,5 +28,14 @@ export const gameSpace = (io: any): any => {
 
       // socket.join(room)
     })
+
+    socket.on('game join', async (data) => {
+      const gameFind = await gameSchema.findOne({ _id: data.id })
+      const id = gameFind?.id
+      await gameFind?.updateOne({ $push: { players: data.player } } as any)
+      await gameFind?.save()
+      await socket.join(id)
+      socket.emit('game join', gameFind)
+    })
   })
 }
