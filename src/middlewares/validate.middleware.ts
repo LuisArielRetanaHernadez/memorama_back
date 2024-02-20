@@ -14,6 +14,8 @@ export const validate = (validations: ContextRunner[]) => {
       return next()
     }
 
-    return next(new TemplateError(errors.array().toString(), 400))
+    console.log(errors.array())
+
+    return next(new TemplateError(errors.array().map((err) => err.msg).join('. '), 400))
   }
 }
