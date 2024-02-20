@@ -18,7 +18,11 @@ export interface Game {
   isPrivate: Boolean
   password?: String
   players: Player[]
-  cards: [{ type: Types.ObjectId }]
+  cards: [{
+    type: Types.ObjectId
+    ref: 'cards'
+    isFlip: Boolean
+  }]
   matchsCards: [{ pair: number, player: string }]
   lavel: GameLavel
   status: StatusSource

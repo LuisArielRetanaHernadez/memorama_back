@@ -20,14 +20,20 @@ const gameSchema = new Schema<Game>({
       type: String
     }
   }],
-  cards: [{
-    isMatch: {
-      type: Boolean,
-      default: false
+  matchsCards: [{
+    pair: {
+      type: Number
     },
     player: {
-      type: String,
-      default: ''
+      type: String
+    }
+  }],
+  cards: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Card',
+    isFlip: {
+      type: Boolean,
+      default: false
     }
   }],
   lavel: String
