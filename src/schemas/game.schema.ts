@@ -29,8 +29,10 @@ const gameSchema = new Schema<Game>({
     }
   }],
   cards: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Card',
+    _id: {
+      type: Schema.Types.ObjectId,
+      ref: 'Card'
+    },
     isFlip: {
       type: Boolean,
       default: false
