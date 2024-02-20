@@ -1,11 +1,16 @@
+import { Socket } from 'socket.io'
 import { gameMiddleware } from './game/game.middleware'
-const middlewares = {
+
+interface Middlewares {
+  [key: string]: (socket: Socket, event: any, next: any) => void
+}
+const middlewares: Middlewares = {
   ...gameMiddleware
 }
-export const apllyMiddleware = (event: any[], next: any): any => {
+export const apllyMiddleware = (socket: Socket, event: any[], next: any): any => {
   const middlewareCheck = middlewares[event[0]]
-  if (middlewareCheck) {
-    middlewareCheck(this, event[1], next)
+  if (middlewareCheck !== undefined) {
+    middlewareCheck(socket, event[1], next)
   } else {
     next()
   }
