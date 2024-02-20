@@ -14,39 +14,40 @@ export const createGameSchema = checkSchema({
     customSanitizer: {
       options: (value) => {
         if (value === '' || value === null) {
-          value = 'Sin nombre'
+          throw new Error('Category is required')
         }
-        return true
+        return value
       }
     },
     trim: true
   },
   playerLimit: {
     isNumeric: true,
-    toInt: true,
-    isLength: {
-      options: {
-        min: 2,
-        max: 4
-      }
-    }
+    errorMessage: 'Player limit is required',
+    toInt: true
   },
   isOnline: {
-    isBoolean: true,
-    toBoolean: false
+    isBoolean: true
   },
-  // comprobar si isOnline es true para tener la opcion de que isPrivate pueda ser true sino tendra que ser false
-  isPrivate: {
-    isBoolean: true,
-    custom: {
-      options: (value, { req }) => {
-        if (value === true && req.isOnline === false) {
-          throw new Error('Private game must be online')
-        }
-        return true
-      }
-    }
-  },
+  // isPrivate: {
+  //   isBoolean: true,
+  //   custom: {
+  //     options: (value, { req }) => {
+  //       if (value === true && req.body.isOnline === false) {
+  //         throw new Error('Private game must be online')
+  //       }
+  //       return value
+  //     }
+  //   },
+  //   customSanitizer: {
+  //     options: (value, { req }) => {
+  //       if (value === true && req.body.isOnline === false) {
+  //         return false
+  //       }
+  //       return value
+  //     }
+  //   }
+  // },
   password: {
     optional: true,
     custom: {
@@ -54,7 +55,7 @@ export const createGameSchema = checkSchema({
         if (value === '' && req.isPrivate === true) {
           throw new Error('Password is required')
         }
-        return true
+        return value
       }
     },
     trim: true,
@@ -66,20 +67,26 @@ export const createGameSchema = checkSchema({
     }
   },
   players: {
-    optional: true,
+    isEmpty: false,
+    errorMessage: 'Players is required',
     custom: {
       options: (value: Player[], { req }) => {
+        console.log(value)
+        if (value === undefined) {
+          throw new Error('Players is required')
+        }
         if (value.length <= 0) {
           throw new Error('Players is required')
         }
         if (value.length > req.playerLimit) {
           throw new Error('Players limit exceeded')
         }
-        const players = value.some(player => player.name === '' || typeof player.name === 'string')
+        const players = value.some(player => player.name === '' || typeof player.name !== 'string')
+        console.log(players, ' ,,, ')
         if (players) {
           throw new Error('Players name is required')
         }
-        return true
+        return value
       }
     }
   },
@@ -90,7 +97,7 @@ export const createGameSchema = checkSchema({
         if (value === '' && req.body.isPrivate === true) {
           throw new Error('Password is required')
         }
-        return true
+        return value
       }
     },
     trim: true
@@ -102,7 +109,7 @@ export const createGameSchema = checkSchema({
         if (!['easy', 'medium', 'hard'].includes(value)) {
           throw new Error('Level must be easy, medium or hard')
         }
-        return true
+        return value
       }
     }
   }
