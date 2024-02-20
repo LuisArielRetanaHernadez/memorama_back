@@ -12,9 +12,10 @@ export const gameSpace = (io: any): any => {
     })
 
     socket.on('game create', async (data: NewGame) => {
-      const players = data.players.map(player => {
+      const players = data.players.map((player, index) => {
         return {
           ...player,
+          position: index++,
           socket: socket.id
         }
       })
