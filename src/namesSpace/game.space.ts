@@ -22,6 +22,8 @@ export const gameSpace = (io: any): any => {
       const players = data.players.map((player, index) => {
         return {
           ...player,
+          isShift: index === 0,
+          shift: index++,
           position: index++,
           socket: socket.id
         }
