@@ -1,11 +1,11 @@
 import { Types } from 'mongoose'
 
-import { Player, StatusSource } from './types'
+import { Player } from './types'
 
 export type PrivateGame = 'private' | 'public'
 export type GameLavel = 'easy' | 'medium' | 'hard'
 export type GameCategory = 'numbers' | 'animals' | 'programmation' | 'countries'
-
+export type GameStatus = 'waiting' | 'started' | 'finished'
 export type OnlineGame = 'online' | 'offline'
 export type CategoryGame = 'numbers' | 'animals' | 'science'
 
@@ -25,7 +25,7 @@ export interface Game {
   }]
   matchsCards: [{ pair: number, player: string }]
   lavel: GameLavel
-  status: StatusSource
+  status: GameStatus
 }
 
 export type NewGame = Omit<Game, 'cards' | 'matchsCards'>
