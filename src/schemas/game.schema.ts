@@ -18,6 +18,11 @@ const gameSchema = new Schema<Game>({
     name: {
       type: String
     },
+    isShift: {
+      type: Boolean,
+      default: false
+    },
+    shift: Number,
     position: {
       type: Number
     },
