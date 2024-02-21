@@ -5,10 +5,10 @@ const { Schema } = mongoose
 const gameSchema = new Schema<Game>({
   title: String,
   category: String,
-  playerLimit: Number,
   isOnline: Boolean,
   isPrivate: Boolean,
   password: String,
+  playerLimit: Number,
   players: [{
     name: {
       type: String
@@ -28,6 +28,7 @@ const gameSchema = new Schema<Game>({
       type: String
     }
   }],
+  limitCards: String,
   cards: [{
     _id: {
       type: Schema.Types.ObjectId,
