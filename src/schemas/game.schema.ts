@@ -41,7 +41,7 @@ const gameSchema = new Schema<Game>({
   lavel: String,
   status: {
     type: String,
-    default: 'pending'
+    default: 'waiting'
   }
 })
 
