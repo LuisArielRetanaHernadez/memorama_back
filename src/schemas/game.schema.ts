@@ -29,14 +29,20 @@ const gameSchema = new Schema<Game>({
     }
   }],
   cards: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Card',
+    _id: {
+      type: Schema.Types.ObjectId,
+      ref: 'Card'
+    },
     isFlip: {
       type: Boolean,
       default: false
     }
   }],
-  lavel: String
+  lavel: String,
+  status: {
+    type: String,
+    default: 'waiting'
+  }
 })
 
 export default mongoose.model('Game', gameSchema)
