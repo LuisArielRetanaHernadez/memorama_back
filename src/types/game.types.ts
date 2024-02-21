@@ -11,13 +11,13 @@ export type CategoryGame = 'numbers' | 'animals' | 'science'
 
 export interface Game {
   title: String
-  playerLimit: String
-  limitCards: number
   category: CategoryGame
   isOnline: Boolean
   isPrivate: Boolean
   password?: String
+  playerLimit: String
   players: Player[]
+  limitCards: number
   cards: [{
     type: Types.ObjectId
     ref: 'cards'
