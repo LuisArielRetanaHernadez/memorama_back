@@ -53,8 +53,11 @@ export const gameSpace = (io: any): any => {
       await socket.join(id)
       socket.emit('game join', gameFind)
     })
-    socket.on('message', async () => {
-      game.emit('message', 'hola')
+    socket.on('start game', async (data) => {
+      const gameFind = await gameSchema.findOne({ _id: data.id })
+      await gameFind?.updateOne({ status: 'started' })
+      await gameFind?.save()
+      game.to(data.id).emit('start game', gameFind)
     })
   })
 }
