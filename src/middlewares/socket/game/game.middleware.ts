@@ -58,7 +58,7 @@ export const gameMiddleware = {
     if (playersValid.length < 1) {
       return next(new Error('Player limit is too low'))
     }
-    if (playersValid.length < 2 && isPrivateValid) {
+    if (playersValid.length !== 1 && isPrivateValid) {
       return next(new Error('Private game must have at least 2 or more players'))
     }
     if (playersValid.length > playerLimitValid) {
