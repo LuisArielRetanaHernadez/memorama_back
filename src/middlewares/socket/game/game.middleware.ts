@@ -41,19 +41,25 @@ export const gameMiddleware = {
       return next(new Error('Private game can only be online'))
     }
     const passwordValid = data.password
-    if (typeof passwordValid !== 'string') {
-      return next(new Error('Password is not a string'))
+    if (isPrivateValid) {
+      if (typeof passwordValid !== 'string') {
+        return next(new Error('Password is not a string'))
+      }
+      if (isPrivateValid && passwordValid.length < 6) {
+        return next(new Error('Password is too short'))
+      }
     }
-    if (isPrivateValid && passwordValid.length < 6) {
-      return next(new Error('Password is too short'))
-    }
+
     const playersValid = data.players
     const playersNameValid = playersValid.some(player => typeof player.name === 'string' && player.name.length < 1)
     if (playersNameValid) {
       return next(new Error('Player name is too short and must be string'))
     }
-    if (playersValid.length < 2) {
+    if (playersValid.length < 1) {
       return next(new Error('Player limit is too low'))
+    }
+    if (playersValid.length < 2 && isPrivateValid) {
+      return next(new Error('Private game must have at least 2 or more players'))
     }
     if (playersValid.length > playerLimitValid) {
       return next(new Error('Player limit is too high'))
