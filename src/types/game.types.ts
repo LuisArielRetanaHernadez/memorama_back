@@ -15,6 +15,7 @@ export interface Game {
   isOnline: Boolean
   isPrivate: Boolean
   password?: String
+  administrator: Player
   playerLimit: String
   players: Player[]
   limitCards: number
