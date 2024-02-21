@@ -10,6 +10,7 @@ export const gameSpace = (io: any): any => {
 
   game.on('connection', (socket: Socket) => {
     console.log('a user connected to game space ', socket.id)
+
     socket.use((event, next) => {
       apllyMiddleware(socket, event, next)
     })
@@ -30,6 +31,7 @@ export const gameSpace = (io: any): any => {
       })
 
       data.players = players
+      data.administrator = players[0]
 
       const gameCreate = await gameSchema.create(data)
 
@@ -60,5 +62,14 @@ export const gameSpace = (io: any): any => {
       await gameFind?.save()
       game.to(data.id).emit('start game', gameFind)
     })
+
+    // socket.on('flip card', async (data) => {
+    //   const gameFind = await gameSchema.findOne({ _id: data.id, status: 'started' })
+    //   if (gameFind === null) {
+    //     throw new Error('Game not found')
+    //   }
+    //   const player = gameFind.players.find((player) => player.socket === socket.id)
+    //   game.to(data.id).emit('flip card', gameFind)
+    // })
   })
 }
