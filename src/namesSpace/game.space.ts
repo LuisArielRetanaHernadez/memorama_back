@@ -29,12 +29,11 @@ export const gameSpace = (io: any): any => {
 
       data.players = players
 
-      await gameSchema.create(data)
-        .then(game => socket.emit('game create', game))
-        .catch(err => console.log(err))
-      // const room = gameCreate.id
+      const gameCreate = await gameSchema.create(data)
 
-      // socket.join(room)
+      await gameCreate.save()
+
+      game.emit('game create', gameCreate)
     })
 
     socket.on('game join', async (data) => {
