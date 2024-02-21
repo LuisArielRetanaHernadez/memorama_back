@@ -38,7 +38,11 @@ const gameSchema = new Schema<Game>({
       default: false
     }
   }],
-  lavel: String
+  lavel: String,
+  status: {
+    type: String,
+    default: 'pending'
+  }
 })
 
 export default mongoose.model('Game', gameSchema)
