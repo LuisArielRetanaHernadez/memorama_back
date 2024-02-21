@@ -21,12 +21,20 @@ export const gameSpace = (io: any): any => {
 
     socket.on('game create', async (data: NewGame) => {
       const players = data.players.map((player, index) => {
+        if (data.isOnline === true) {
+          return {
+            ...player,
+            isShift: index === 0,
+            shift: index++,
+            position: index++,
+            socket: socket.id
+          }
+        }
         return {
           ...player,
           isShift: index === 0,
           shift: index++,
-          position: index++,
-          socket: socket.id
+          position: index++
         }
       })
 
