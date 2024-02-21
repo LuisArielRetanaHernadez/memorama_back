@@ -22,6 +22,8 @@ export const sendReponseJson = (
 export interface Player {
   name: string
   position: number
+  isShift?: Boolean
+  shift: number
   socket?: String
   password?: string
 }
