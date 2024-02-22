@@ -5,9 +5,9 @@ import gameSchema from '../schemas/game.schema'
 import { apllyMiddleware } from '../middlewares/socket/apply.middleware'
 
 export const gameSpace = (io: any): any => {
-  const game = io.of('/game')
+  // const game = io.of('/game')
 
-  game.on('connection', (socket: Socket) => {
+  io.of('/game').on('connection', (socket: Socket) => {
     console.log('a user connected to game space ', socket.id)
 
     socket.use((event, next) => {
@@ -38,7 +38,12 @@ export const gameSpace = (io: any): any => {
       const gameFind = await gameSchema.findOne({ _id: data.id })
       await gameFind?.updateOne({ status: 'started' })
       await gameFind?.save()
-      game.to(data.id).emit('start game', gameFind)
+      socket.to(data.id).emit('start game', gameFind)
+    })
+
+    socket.on('add game', async () => {
+      const gameNew = await gameSchema.find({ isOnline: true })
+      socket.emit('add game', gameNew)
     })
 
     socket.on('connection_error', (err) => {
