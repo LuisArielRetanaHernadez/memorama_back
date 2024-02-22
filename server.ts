@@ -7,12 +7,18 @@ import { Server } from 'socket.io'
 import { gameSpace } from './src/namesSpace/game.space'
 
 const httpServer = createServer(app)
-const io = new Server(httpServer, {})
+const io = new Server(httpServer, {
+  cors: {
+    origin: '*'
+  },
+  connectionStateRecovery: {
+    maxDisconnectionDuration: 1000,
+    skipMiddlewares: true
+  }
+})
 
-// io.on('connection', _socket => {
-//   console.log('a user connected')
-// })
 gameSpace(io)
+export { io }
 const PORT = 3333
 
 httpServer.listen(PORT, () => {
