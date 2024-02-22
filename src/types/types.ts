@@ -1,4 +1,5 @@
 import { Response } from 'express'
+import { Types } from 'mongoose'
 
 export type StatusSource = 'live' | 'update' | 'deleted'
 export type StatusResponse = 200 | 201 | 202 | 203 | 204 | 400 | 404
@@ -20,6 +21,7 @@ export const sendReponseJson = (
 }
 
 export interface Player {
+  _id?: Types.ObjectId
   name: string
   position: number
   isShift?: Boolean
