@@ -1,6 +1,5 @@
 import { Socket } from 'socket.io'
 import gameSchema from '../schemas/game.schema'
-import { NewGame } from '../types/game.types'
 
 // middleware
 import { apllyMiddleware } from '../middlewares/socket/apply.middleware'
@@ -17,35 +16,6 @@ export const gameSpace = (io: any): any => {
 
     socket.on('disconnect', () => {
       console.log('user disconnected from game space')
-    })
-
-    socket.on('game create', async (data: NewGame) => {
-      const players = data.players.map((player, index) => {
-        if (data.isOnline === true) {
-          return {
-            ...player,
-            isShift: index === 0,
-            shift: index++,
-            position: index++,
-            socket: socket.id
-          }
-        }
-        return {
-          ...player,
-          isShift: index === 0,
-          shift: index++,
-          position: index++
-        }
-      })
-
-      data.players = players
-      data.administrator = players[0]
-
-      const gameCreate = await gameSchema.create(data)
-
-      await gameCreate.save()
-
-      game.emit('game create', gameCreate)
     })
 
     socket.on('game join', async (data) => {
@@ -69,6 +39,12 @@ export const gameSpace = (io: any): any => {
       await gameFind?.updateOne({ status: 'started' })
       await gameFind?.save()
       game.to(data.id).emit('start game', gameFind)
+    })
+
+    socket.on('connection_error', (err) => {
+      console.log(err)
+      socket.disconnect()
+      throw new Error(err)
     })
 
     // socket.on('flip card', async (data) => {
