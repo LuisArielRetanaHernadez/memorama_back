@@ -46,14 +46,5 @@ export const gameSpace = (io: any): any => {
       socket.disconnect()
       throw new Error(err)
     })
-
-    // socket.on('flip card', async (data) => {
-    //   const gameFind = await gameSchema.findOne({ _id: data.id, status: 'started' })
-    //   if (gameFind === null) {
-    //     throw new Error('Game not found')
-    //   }
-    //   const player = gameFind.players.find((player) => player.socket === socket.id)
-    //   game.to(data.id).emit('flip card', gameFind)
-    // })
   })
 }
