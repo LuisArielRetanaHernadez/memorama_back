@@ -47,6 +47,10 @@ const gameSchema = new Schema<Game>({
     isFlip: {
       type: Boolean,
       default: false
+    },
+    isMatched: {
+      type: Boolean,
+      default: false
     }
   }],
   lavel: String,
