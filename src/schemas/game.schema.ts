@@ -43,6 +43,10 @@ const gameSchema = new Schema<Game>({
     isMatched: {
       type: Boolean,
       default: false
+    },
+    player: {
+      typeof: Schema.Types.ObjectId,
+      default: null
     }
   }],
   lavel: String,
