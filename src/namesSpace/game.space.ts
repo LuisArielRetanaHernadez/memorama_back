@@ -7,6 +7,12 @@ import { apllyMiddleware } from '../middlewares/socket/apply.middleware'
 export const gameSpace = (io: any): any => {
   // const game = io.of('/game')
 
+  const timeShift = (time: number, fn) => {
+    setTimeout(() => {
+      fn()
+    }, time)
+  }
+
   io.of('/game').on('connection', (socket: Socket) => {
     console.log('a user connected to game space ', socket.id)
 
@@ -39,6 +45,10 @@ export const gameSpace = (io: any): any => {
       await gameFind?.updateOne({ status: 'started' })
       await gameFind?.save()
       socket.to(data.id).emit('start game', gameFind)
+    })
+
+    socket.on('shift', async (data) => {
+
     })
 
     socket.on('add game', async () => {
