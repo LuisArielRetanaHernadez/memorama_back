@@ -30,14 +30,6 @@ const gameSchema = new Schema<Game>({
       type: String
     }
   }],
-  matchsCards: [{
-    pair: {
-      type: Number
-    },
-    player: {
-      type: String
-    }
-  }],
   limitCards: String,
   cards: [{
     _id: {
